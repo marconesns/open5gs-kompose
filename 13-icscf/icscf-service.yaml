@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: icscf
+  name: icscf
+spec:
+  clusterIP: 172.30.0.19
+  ports:
+    - name: "3869"
+      port: 3869
+      protocol: UDP
+      targetPort: 3869
+    - name: 3869-tcp
+      port: 3869
+      targetPort: 3869
+    - name: "4060"
+      port: 4060
+      protocol: UDP
+      targetPort: 4060
+    - name: 4060-tcp
+      port: 4060
+      targetPort: 4060
+  selector:
+    app: icscf
+status:
+  loadBalancer: {}

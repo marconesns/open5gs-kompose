@@ -1,0 +1,258 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: icscf
+  name: icscf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: icscf
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.network/default: "true"
+        app: icscf
+    spec:
+      containers:
+        - env:
+            - name: AMF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: AMF_IP
+                  name: env
+            - name: AUSF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: AUSF_IP
+                  name: env
+            - name: BSF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: BSF_IP
+                  name: env
+            - name: COMPONENT_NAME
+              value: icscf-1
+            - name: DNS_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: DNS_IP
+                  name: env
+            - name: DOCKER_HOST_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: DOCKER_HOST_IP
+                  name: env
+            - name: FHOSS_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: FHOSS_IP
+                  name: env
+            - name: HSS_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: HSS_IP
+                  name: env
+            - name: ICSCF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: ICSCF_IP
+                  name: env
+            - name: MCC
+              valueFrom:
+                configMapKeyRef:
+                  key: MCC
+                  name: env
+            - name: MME_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: MME_IP
+                  name: env
+            - name: MNC
+              valueFrom:
+                configMapKeyRef:
+                  key: MNC
+                  name: env
+            - name: MONGO_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: MONGO_IP
+                  name: env
+            - name: MYSQL_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_IP
+                  name: env
+            - name: NRF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: NRF_IP
+                  name: env
+            - name: NR_GNB_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: NR_GNB_IP
+                  name: env
+            - name: NR_UE_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: NR_UE_IP
+                  name: env
+            - name: NSSF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: NSSF_IP
+                  name: env
+            - name: OAI_ENB_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: OAI_ENB_IP
+                  name: env
+            - name: PCF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: PCF_IP
+                  name: env
+            - name: PCRF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: PCRF_IP
+                  name: env
+            - name: PCSCF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: PCSCF_IP
+                  name: env
+            - name: RTPENGINE_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: RTPENGINE_IP
+                  name: env
+            - name: SCSCF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SCSCF_IP
+                  name: env
+            - name: SGWC_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SGWC_IP
+                  name: env
+            - name: SGWU_ADVERTISE_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SGWU_ADVERTISE_IP
+                  name: env
+            - name: SGWU_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SGWU_IP
+                  name: env
+            - name: SMF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SMF_IP
+                  name: env
+            - name: SRS_ENB_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: SRS_ENB_IP
+                  name: env
+            - name: TEST_NETWORK
+              valueFrom:
+                configMapKeyRef:
+                  key: TEST_NETWORK
+                  name: env
+            - name: UDM_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: UDM_IP
+                  name: env
+            - name: UDR_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: UDR_IP
+                  name: env
+            - name: UE1_AMF
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_AMF
+                  name: env
+            - name: UE1_IMEI
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_IMEI
+                  name: env
+            - name: UE1_IMEISV
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_IMEISV
+                  name: env
+            - name: UE1_IMSI
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_IMSI
+                  name: env
+            - name: UE1_KI
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_KI
+                  name: env
+            - name: UE1_OP
+              valueFrom:
+                configMapKeyRef:
+                  key: UE1_OP
+                  name: env
+            - name: UPF_ADVERTISE_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: UPF_ADVERTISE_IP
+                  name: env
+            - name: UPF_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: UPF_IP
+                  name: env
+            - name: WEBUI_IP
+              valueFrom:
+                configMapKeyRef:
+                  key: WEBUI_IP
+                  name: env
+          image: quay.io/tliberatifit/icscf_kamailio:latest
+          name: icscf
+          ports:
+            - containerPort: 3869
+              protocol: UDP
+            - containerPort: 3869
+            - containerPort: 4060
+              protocol: UDP
+            - containerPort: 4060
+          resources: {}
+          # volumeMounts:
+          #   - mountPath: /mnt/icscf
+          #     name: icscf-claim0
+          #   - mountPath: /etc/timezone
+          #     name: icscf-claim1
+          #     readOnly: true
+          #   - mountPath: /etc/localtime
+          #     name: icscf-claim2
+          #     readOnly: true
+      restartPolicy: Always
+      # volumes:
+      #   - name: icscf-claim0
+      #     persistentVolumeClaim:
+      #       claimName: icscf-claim0
+      #   - name: icscf-claim1
+      #     persistentVolumeClaim:
+      #       claimName: icscf-claim1
+      #       readOnly: true
+      #   - name: icscf-claim2
+      #     persistentVolumeClaim:
+      #       claimName: icscf-claim2
+      #       readOnly: true
+status: {}

@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pcscf
+  name: pcscf
+spec:
+  clusterIP: 172.30.0.21
+  ports:
+    - name: "3871"
+      port: 3871
+      protocol: UDP
+      targetPort: 3871
+    - name: 3871-tcp
+      port: 3871
+      targetPort: 3871
+    - name: "5060"
+      port: 5060
+      targetPort: 5060
+    - name: 5060-udp
+      port: 5060
+      protocol: UDP
+      targetPort: 5060
+  selector:
+    app: pcscf
+status:
+  loadBalancer: {}
